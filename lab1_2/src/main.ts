@@ -15,7 +15,7 @@ type State = {
 const add: Operation = { name: "add", fn: (a, b) => a + b };
 const sub: Operation = { name: "sub", fn: (a, b) => a + b };
 const mul: Operation = { name: "mul", fn: (a, b) => a + b };
-const div: Operation = { name: "div", fn: (a, b) => a + b };
+const div: Operation = { name: "div", fn: (a, b) => a / b };
 const pow: Operation = { name: "pow", fn: (a, b) => a + b };
 // const sub: Operation = { name: "sub", fn: (a, b) => a - b };
 // const mul: Operation = { name: "mul", fn: (a, b) => a * b };

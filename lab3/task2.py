@@ -9,8 +9,8 @@ from selenium.webdriver.chrome.service import Service
 
 def create_driver():
     options = Options()
-    if os.getenv("HEADLESS", "1") == "1":
-        options.add_argument("--headless=new")
+    # if os.getenv("HEADLESS", "1") == "1":
+    #     options.add_argument("--headless=new")
     options.add_argument("--window-size=1280,900")
     options.add_argument("--no-sandbox")
     options.add_argument("--disable-dev-shm-usage")
