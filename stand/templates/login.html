@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block title %}Вход в систему{% endblock %}
+{% block body %}
+<h1>Вход в систему</h1>
+{% if error %}<div id="flash" class="alert error">{{ error }}</div>{% endif %}
+{% if info %}<div id="flash" class="alert info">{{ info }}</div>{% endif %}
+<form id="login-form" method="post" action="/login">
+  <label for="username">Логин</label>
+  <input type="text" id="username" name="username" class="form-control field-x7a2">
+  <label for="password">Пароль</label>
+  <input type="password" id="password" name="password" class="form-control field-x7a3">
+  <button type="submit" id="login-btn" class="btn btn-primary css-1q2w3e">Войти</button>
+</form>
+{% endblock %}

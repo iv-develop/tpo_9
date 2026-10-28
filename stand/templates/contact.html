@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block title %}Форма обратной связи{% endblock %}
+{% block body %}
+<h1>Обратная связь</h1>
+<div id="success-message" class="alert info" hidden>Спасибо! Ваше сообщение отправлено.</div>
+<form id="contact-form" novalidate>
+  <label for="name">Имя *</label>
+  <input type="text" id="name" name="name"><span class="err" id="name-error"></span>
+  <label for="email">Email *</label>
+  <input type="email" id="email" name="email"><span class="err" id="email-error"></span>
+  <label for="phone">Телефон</label>
+  <input type="tel" id="phone" name="phone"><span class="err" id="phone-error"></span>
+  <label for="topic">Тема</label>
+  <select id="topic" name="topic"><option>Вопрос</option><option>Жалоба</option><option>Предложение</option></select>
+  <label for="message">Сообщение *</label>
+  <textarea id="message" name="message"></textarea><span class="err" id="message-error"></span>
+  <div class="chk"><input type="checkbox" id="consent" name="consent"><label for="consent">Согласен на обработку данных *</label></div>
+  <span class="err" id="consent-error"></span>
+  <button type="submit" id="submit">Отправить</button>
+</form>
+<script>
+const $ = id => document.getElementById(id);
+$("contact-form").addEventListener("submit", e => {
+  e.preventDefault();
+  const errors = {};
+  if ($("name").value.trim().length < 2) errors.name = "Введите имя";
+  if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test($("email").value.trim())) errors.email = "Введите корректный email";
+  const ph = $("phone").value.trim();
+  if (ph && !/^\+?\d{10,15}$/.test(ph)) errors.phone = "Некорректный номер телефона";
+  if ($("message").value.trim().length < 10) errors.message = "Сообщение должно содержать не менее 10 символов";
+  if (!$("consent").checked) errors.consent = "Необходимо согласие на обработку данных";
+  for (const f of ["name","email","phone","message","consent"]) $(f + "-error").textContent = errors[f] || "";
+  if (Object.keys(errors).length === 0) {
+    $("contact-form").hidden = true;
+    $("success-message").hidden = false;
+  }
+});
+</script>
+{% endblock %}
